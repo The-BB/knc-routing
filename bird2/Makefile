@@ -4,17 +4,17 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 
-# Entware specific: keep version 2.14; kernels are too old (MPLS since Linux 4.6)
+# Entware specific: kernels are too old (RTAX_CC_ALGO since Linux 4.0 / MPLS since Linux 4.6)
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bird2
-PKG_VERSION:=2.17.1
+PKG_VERSION:=2.18
 PKG_RELEASE:=1
 
 PKG_SOURCE:=bird-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://bird.network.cz/download/
-PKG_HASH:=bfd718dfa596819b3801688783212514b467163329aec9bbcd0fa3dee03e10e9
+PKG_SOURCE_URL:=https://bird.nic.cz/download/
+PKG_HASH:=80e40ab7e73df9d521d5348cbb57b1399501af53f4d108fd8c24f6b14e3384c3
 
 PKG_MAINTAINER:=Toke Høiland-Jørgensen <toke@toke.dk>
 PKG_LICENSE:=GPL-2.0-or-later
@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/bird2
   TITLE:=The BIRD Internet Routing Daemon (v2)
-  URL:=https://bird.network.cz/
+  URL:=https://bird.nic.cz/
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
@@ -37,7 +37,7 @@ endef
 
 define Package/bird2c
   TITLE:=The BIRD command-line client (v2)
-  URL:=https://bird.network.cz/
+  URL:=https://bird.nic.cz/
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
@@ -47,7 +47,7 @@ endef
 
 define Package/bird2cl
   TITLE:=The BIRD lightweight command-line client (v2)
-  URL:=https://bird.network.cz/
+  URL:=https://bird.nic.cz/
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
