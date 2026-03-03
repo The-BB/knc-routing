@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=batmand
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://git.open-mesh.org/batmand.git
@@ -17,7 +17,7 @@ PKG_SOURCE_VERSION:=2f62b17d4132f82c4716b672101eb7faa916192a
 PKG_SOURCE_DATE:=2022-12-31
 
 PKG_LICENSE:=GPL-2.0-only
-PKG_MAINTAINER:=Corinna "Elektra" Aichele <onelektra@gmx.net>
+PKG_MAINTAINER:=Corinna Aichele <onelektra@gmx.net>
 
 PKG_BUILD_PARALLEL:=1
 
@@ -47,7 +47,7 @@ define Package/batmand/install
 	$(INSTALL_DIR) $(1)/usr/sbin $(1)/etc/config $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/batmand $(1)/usr/sbin/
 	$(INSTALL_BIN) ./files/etc/init.d/batmand $(1)/etc/init.d
-	$(INSTALL_DATA) ./files/etc/config/batmand $(1)/etc/config
+	$(INSTALL_CONF) ./files/etc/config/batmand $(1)/etc/config
 endef
 
 define Package/batmand/conffiles
