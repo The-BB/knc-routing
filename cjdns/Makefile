@@ -83,7 +83,7 @@ ifneq ($(CONFIG_GCC_USE_VERSION_8),y)
 TARGET_CFLAGS += -Wno-error=stringop-overread
 endif
 
-ifeq ($(or $(CONFIG_GCC_USE_VERSION_12),$(CONFIG_GCC_USE_VERSION_13)),y)
+ifeq ($(CONFIG_GCC_USE_VERSION_13),y)
 TARGET_CFLAGS += -Wno-error=dangling-pointer
 endif
 
