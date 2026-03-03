@@ -51,7 +51,7 @@ endef
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		CXX="$(TARGET_CXX)" \
-		CXXFLAGS="$(TARGET_CXXFLAGS) -std=c++0x -fno-rtti" \
+		CXXFLAGS="$(TARGET_CXXFLAGS) -std=c++0x -fno-rtti -Wno-narrowing" \
 		LDFLAGS="$(TARGET_LDFLAGS)" \
 		LIBS="-lc" \
 		ndppd
