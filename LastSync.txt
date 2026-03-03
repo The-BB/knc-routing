@@ -1,7 +1,8 @@
-commit d53907107d48331ef38978f7a259bc8eac3765a0 (HEAD -> master, origin/master, origin/HEAD)
-Author: Fabrice Fontaine <fontaine.fabrice@gmail.com>
-Date:   Mon Jun 16 15:29:02 2025 +0200
+commit 7c432d2e09a9c79a862c2d8c11725acee96f0334 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 6a5019a 5763ead
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Wed Feb 25 09:18:22 2026 +0100
 
-    opennds: Add PKG_CPE_ID
+    Merge pull request #1161 from ecsv/batadv-2026.0
     
-    Signed-off-by: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+    batman-adv: update packages to version 2026.0
