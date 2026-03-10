@@ -1,8 +1,26 @@
-commit 7c432d2e09a9c79a862c2d8c11725acee96f0334 (HEAD -> master, origin/master, origin/HEAD)
-Merge: 6a5019a 5763ead
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Wed Feb 25 09:18:22 2026 +0100
+commit 44f2d58cbf95fe5a18291238984db97bc36237ec (HEAD -> master, origin/master, origin/HEAD)
+Author: Rob White <rob@blue-wave.net>
+Date:   Sun Mar 8 20:39:11 2026 +0000
 
-    Merge pull request #1161 from ecsv/batadv-2026.0
+    mesh11sd: update to version 6.2.1
     
-    batman-adv: update packages to version 2026.0
+    Maintainer: Rob White rob@blue-wave.net
+    
+    Compile tested: All
+    
+    Run tested: arm_cortex-a7_neon-vfpv4,
+    mipsel_24kc, mips_24kc,
+    aarch64_cortex-a53;
+    On 24.10, 25.12 and master/snapshot.
+    
+    Description: mesh11sd (6.2.1)
+    
+    This is a bug fix release.
+      * Fix - sticky onlink route in MBP mode.
+      * Fix - apmond return code 4 from spider request.
+      * Add - nfs rule to drop proprietory PowerLine discovery packets.
+    
+    The full changelog can be seen here:
+    https://github.com/openNDS/mesh11sd/blob/v6.2.1/ChangeLog
+    
+    Signed-off-by: Rob White <rob@blue-wave.net>
