@@ -1,8 +1,8 @@
-commit d830ce7b2baab3762d4d941e2605cd0261e674c8 (HEAD -> master, origin/master, origin/HEAD)
-Merge: 44f2d58 9777081
+commit 4ec8a663e0f2fe929d0be35427477e7242636787 (HEAD -> master, origin/master, origin/HEAD)
+Merge: d830ce7 52ba65e
 Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Fri Mar 20 10:54:51 2026 +0100
+Date:   Mon Mar 30 14:57:31 2026 +0200
 
-    Merge pull request #1167 from wififreedom/batadv_vlan
+    Merge pull request #1162 from namiltd/patch-1
     
-    Improve batadv_vlan.sh for LuCI integration
+    batman-adv: drop kmod-lib-crc32c on newer kernels
