@@ -1,8 +1,8 @@
-commit 4ec8a663e0f2fe929d0be35427477e7242636787 (HEAD -> master, origin/master, origin/HEAD)
-Merge: d830ce7 52ba65e
+commit 57d286627119ad6f154777cd3d3d47e24e75ec6c (HEAD -> master, origin/master, origin/HEAD)
+Merge: 4ec8a66 61466d6
 Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Mon Mar 30 14:57:31 2026 +0200
+Date:   Thu Apr 9 19:10:48 2026 +0200
 
-    Merge pull request #1162 from namiltd/patch-1
+    Merge pull request #1168 from ecsv/batadv-2026.1
     
-    batman-adv: drop kmod-lib-crc32c on newer kernels
+    batman-adv: update packages to version 2026.1
