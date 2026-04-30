@@ -82,7 +82,7 @@
 +#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)
            else if (t == RTAX_CC_ALGO)
  	    {
- 	      struct adata *ad = lp_alloc_adata(s->pool, strlen(cc_algo));
+ 	      struct adata *ad = lp_alloc_adata(s->pool, strlen(cc_algo) + 1);
 @@ -1885,6 +1901,7 @@ nl_parse_route(struct nl_parse_state *s,
  		.u.ptr = ad,
  	      };
