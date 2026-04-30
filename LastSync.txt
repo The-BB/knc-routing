@@ -1,19 +1,12 @@
-commit e696354191803f8b5084b608b9d80fa235ad6069 (HEAD -> master, origin/master, origin/HEAD)
-Author: Packet Please <pktpls@systemli.org>
-Date:   Sat Apr 25 23:07:42 2026 +0200
+commit 776e7160636a7f1add27483ac926dadeb248bb65 (HEAD -> master, origin/master, origin/HEAD)
+Author: Bradford Zhang <zyc@zyc.name>
+Date:   Sun Apr 19 19:54:11 2026 +0800
 
-    bird3: update to 3.2.1
+    bird2: bump to v2.18.1
     
-    Version 3.2.1 (2026-04-01)
-      o ASPA: Fix downstream validation
-      o BMP: Fix route sending
-      o BGP: Fix route refresh after restart
-      o BGP: Fix dynamic peer connection
-      o Filters: Fix string attributes
-      o Filters: Fix ROA check autoreload reconfiguration
-      o Logging: Fix error handling
-      o Kernel: Fix graceful recovery
-      o Pipe: Fix rare collision bug
-      o Config: Allow keyword redefinition
+    This release fix problems below:
+    ASPA: Fix downstream validation
+    Filters: Fix string attributes
+    Logging: Fix error handling
     
-    Signed-off-by: Packet Please <pktpls@systemli.org>
+    Signed-off-by: Bradford Zhang <zyc@zyc.name>
