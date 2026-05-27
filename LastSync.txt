@@ -1,12 +1,8 @@
-commit 776e7160636a7f1add27483ac926dadeb248bb65 (HEAD -> master, origin/master, origin/HEAD)
-Author: Bradford Zhang <zyc@zyc.name>
-Date:   Sun Apr 19 19:54:11 2026 +0800
+commit bacf284416cfe8749ccef6d7de088bfe1d305951 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 776e716 0aca212
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Wed May 27 11:57:56 2026 +0200
 
-    bird2: bump to v2.18.1
+    Merge pull request #1174 from januszdziedzic/master
     
-    This release fix problems below:
-    ASPA: Fix downstream validation
-    Filters: Fix string attributes
-    Logging: Fix error handling
-    
-    Signed-off-by: Bradford Zhang <zyc@zyc.name>
+    batman-adv: fix kmalloc_obj redefinition on Linux 6.18.31+
