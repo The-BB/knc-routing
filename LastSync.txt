@@ -1,8 +1,22 @@
-commit bacf284416cfe8749ccef6d7de088bfe1d305951 (HEAD -> master, origin/master, origin/HEAD)
-Merge: 776e716 0aca212
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Wed May 27 11:57:56 2026 +0200
+commit 6ea029dcc96645836d34dbed56c05e7468916fdc (HEAD -> master, origin/master, origin/HEAD)
+Author: Bradford Zhang <zyc@zyc.name>
+Date:   Fri May 29 17:57:31 2026 +0800
 
-    Merge pull request #1174 from januszdziedzic/master
+    bird2: bump to v2.19.0
     
-    batman-adv: fix kmalloc_obj redefinition on Linux 6.18.31+
+    This release fix problems below:
+    o BGP/MPLS Ethernet VPNs using VXLAN tunnels
+    o BGP: PMSI tunnel attribute
+    o Linux Netlink implementation for bridge interfaces
+    o BGP: Automatic peering based on discovered neighbors
+    o RAdv: Router discovery based on incoming Router Advertisments
+    o Nest: Add message when attempting to reload protocol that is not UP
+    o BMP: Fix off-by-one buffer overflow
+    o OSPF: Fix infinite loop in OSPF Graceful Restart
+    o ASPA: Fix downstream validation
+    o Filters: Fix string attributes
+    o Logging: Fix error handling
+    o Minor filter improvements
+    o Various documentation fixes
+    
+    Signed-off-by: Bradford Zhang <zyc@zyc.name>
