@@ -1,22 +1,10 @@
-commit 6ea029dcc96645836d34dbed56c05e7468916fdc (HEAD -> master, origin/master, origin/HEAD)
-Author: Bradford Zhang <zyc@zyc.name>
-Date:   Fri May 29 17:57:31 2026 +0800
+commit e3b181fb47a650cc5192b5e2d1b89056967109f3 (HEAD -> master, origin/master, origin/HEAD)
+Author: Toke Høiland-Jørgensen <toke@toke.dk>
+Date:   Mon Jun 29 12:28:06 2026 +0200
 
-    bird2: bump to v2.19.0
+    bird2/bird3: rename test.sh to test-version.sh
     
-    This release fix problems below:
-    o BGP/MPLS Ethernet VPNs using VXLAN tunnels
-    o BGP: PMSI tunnel attribute
-    o Linux Netlink implementation for bridge interfaces
-    o BGP: Automatic peering based on discovered neighbors
-    o RAdv: Router discovery based on incoming Router Advertisments
-    o Nest: Add message when attempting to reload protocol that is not UP
-    o BMP: Fix off-by-one buffer overflow
-    o OSPF: Fix infinite loop in OSPF Graceful Restart
-    o ASPA: Fix downstream validation
-    o Filters: Fix string attributes
-    o Logging: Fix error handling
-    o Minor filter improvements
-    o Various documentation fixes
+    The test script is really a version override test, rename it to fix the
+    failing CI tests.
     
-    Signed-off-by: Bradford Zhang <zyc@zyc.name>
+    Signed-off-by: Toke Høiland-Jørgensen <toke@toke.dk>
