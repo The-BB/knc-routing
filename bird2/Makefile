@@ -4,17 +4,21 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 
-# Entware specific: kernels are too old (RTAX_CC_ALGO since Linux 4.0 / MPLS since Linux 4.6)
+# Entware specific: kernels are too old:
+# IFLA_BRIDGE_VLAN_TUNNEL_{FLAGS,ID,INFO} since Linux 4.11;
+# MPLS since Linux 4.6;
+# NDA_SRC_VNI since Linux 4.11;
+# RTAX_CC_ALGO since Linux 4.0
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bird2
-PKG_VERSION:=2.19.0
+PKG_VERSION:=2.19.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=bird-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://bird.nic.cz/download/
-PKG_HASH:=484ad3f935e29eb7d40bb56fbd26c9a717f105c8780768e01c1821f17901ac00
+PKG_HASH:=e91aedac07da4f2718f269f969f65dbcd12f4b58248a784fd32e587b7b4dd7e4
 
 PKG_MAINTAINER:=Toke Høiland-Jørgensen <toke@toke.dk>
 PKG_LICENSE:=GPL-2.0-or-later
