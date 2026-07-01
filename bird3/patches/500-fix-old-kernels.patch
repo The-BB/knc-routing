@@ -36,15 +36,54 @@
  #ifdef RTAX_FASTOPEN_NO_COOKIE
    KRT_METRIC_INT(RTAX_FASTOPEN_NO_COOKIE, "fastopen_no_cookie"),
  #else
-@@ -528,6 +537,7 @@ static struct nl_want_attrs ifla_vxlan_a
+@@ -358,6 +367,7 @@ nl_request_dump_neigh(int af, int bridge
+     .ndm.ndm_family = af,
+   };
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,16,0)
+   if (bridge_id)
+   {
+     req.rta.rta_type = NDA_MASTER;
+@@ -365,6 +375,7 @@ nl_request_dump_neigh(int af, int bridge
+     req.master_id = bridge_id;
+     req.nh.nlmsg_len = NLMSG_ALIGN(req.nh.nlmsg_len) + req.rta.rta_len;
+   }
++#endif /* NDA_MASTER since Linux 3.16 */
+ 
+   send(nl_scan.fd, &req, req.nh.nlmsg_len, 0);
+   nl_scan.last_hdr = NULL;
+@@ -512,12 +523,15 @@ static struct nl_want_attrs ifinfo_attr_
+   [IFLA_INFO_DATA]= { 1, 0, 0 },
  };
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,3,0)
+ #define BIRD_IFLA_BR_MAX (IFLA_BR_VLAN_FILTERING+1)
+ 
+ static struct nl_want_attrs ifla_br_attr_want[BIRD_IFLA_BR_MAX] = {
+   [IFLA_BR_VLAN_FILTERING] = { 1, 1, sizeof(u8) },
+ };
++#endif /* IFLA_BR_VLAN_FILTERING since Linux 4.3 */
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,12,0)
+ #define BIRD_IFLA_VXLAN_MAX (IFLA_VXLAN_LOCAL6+1)
+ 
+ static struct nl_want_attrs ifla_vxlan_attr_want[BIRD_IFLA_VXLAN_MAX] = {
+@@ -526,8 +540,14 @@ static struct nl_want_attrs ifla_vxlan_a
+   [IFLA_VXLAN_LOCAL]	= { 1, 1, sizeof(ip4_addr) },
+   [IFLA_VXLAN_LOCAL6]	= { 1, 1, sizeof(ip6_addr) },
+ };
++#endif
++/* IFLA_VXLAN_ID since Linux 3.7 */
++/* IFLA_VXLAN_LEARNING since Linux 3.7 */
++/* IFLA_VXLAN_LOCAL since Linux 3.7 */
++/* IFLA_VXLAN_LOCAL6 since Linux 3.12 */
  
  
 +#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,11,0)
  #define BIRD_IFBRIDGE_MAX (IFLA_BRIDGE_VLAN_TUNNEL_INFO+1)
  
  static struct nl_want_attrs ifbridge_attr_want[BIRD_IFBRIDGE_MAX] UNUSED = {
-@@ -542,6 +552,7 @@ static struct nl_want_attrs ifbridge_vla
+@@ -542,6 +562,7 @@ static struct nl_want_attrs ifbridge_vla
    [IFLA_BRIDGE_VLAN_TUNNEL_VID]		= { 1, 1, sizeof(u16) },
    [IFLA_BRIDGE_VLAN_TUNNEL_FLAGS]	= { 1, 1, sizeof(u16) },
  };
@@ -52,7 +91,7 @@
  
  
  #define BIRD_IFA_MAX  (IFA_FLAGS+1)
-@@ -637,6 +648,7 @@ static struct nl_want_attrs rtm_attr_wan
+@@ -637,6 +658,7 @@ static struct nl_want_attrs rtm_attr_wan
  #endif
  
  
@@ -60,7 +99,7 @@
  #define BIRD_NDA_MAX  (NDA_SRC_VNI+1)
  
  static struct nl_want_attrs ndm_attr_want[BIRD_NDA_MAX] = {
-@@ -647,6 +659,7 @@ static struct nl_want_attrs ndm_attr_wan
+@@ -647,6 +669,7 @@ static struct nl_want_attrs ndm_attr_wan
    [NDA_MASTER]	  = { 1, 1, sizeof(u32) },
    [NDA_SRC_VNI]	  = { 1, 1, sizeof(u32) },
  };
@@ -68,7 +107,7 @@
  
  
  static int
-@@ -712,10 +725,12 @@ static inline mac_addr rta_get_mac(struc
+@@ -712,10 +735,12 @@ static inline mac_addr rta_get_mac(struc
  static inline ip_addr rta_get_via(struct rtattr *a)
  {
    struct rtvia *v = RTA_DATA(a);
@@ -81,7 +120,7 @@
    return IPA_NONE;
  }
  
-@@ -1068,9 +1083,11 @@ nl_add_metrics(struct nlmsghdr *h, uint
+@@ -1068,9 +1093,11 @@ nl_add_metrics(struct nlmsghdr *h, uint
  
    for (t = 1; t < max; t++)
      if (metrics[0] & (1 << t))
@@ -89,11 +128,11 @@
        if (t == RTAX_CC_ALGO)
          nl_add_attr_str(h, bufsize, t, cc_algo);
        else
-+#endif /* RTAX_CC_ALGO since Linux 4.0 */
++#endif
          nl_add_attr_u32(h, bufsize, t, metrics[t]);
  
    nl_close_attr(h, a);
-@@ -1091,6 +1108,7 @@ nl_parse_metrics(struct rtattr *hdr, u32
+@@ -1091,6 +1118,7 @@ nl_parse_metrics(struct rtattr *hdr, u32
      if (a->rta_type >= max)
        continue;
  
@@ -101,15 +140,31 @@
      if (a->rta_type == RTAX_CC_ALGO)
      {
        *cc_algo = rta_get_str(a);
-@@ -1103,6 +1121,7 @@ nl_parse_metrics(struct rtattr *hdr, u32
+@@ -1103,6 +1131,7 @@ nl_parse_metrics(struct rtattr *hdr, u32
        metrics[a->rta_type] = 0;
      }
      else
-+#endif /* RTAX_CC_ALGO since Linux 4.0 */
++#endif
      {
        if (RTA_PAYLOAD(a) != 4)
  	return -1;
-@@ -1696,9 +1715,11 @@ nl_send_route(struct krt_proto *p, const
+@@ -1167,6 +1196,7 @@ nl_parse_link(struct nlmsghdr *h, int sc
+     if (li[IFLA_INFO_KIND])
+       kind = RTA_DATA(li[IFLA_INFO_KIND]);
+ 
++#ifdef CONFIG_BRIDGE
+     if (!bstrcmp(kind, "bridge") && li[IFLA_INFO_DATA])
+     {
+       ea_set_attr_u32(&f.attrs, &ea_iface_type, 0, IF_TYPE_BRIDGE);
+@@ -1208,6 +1238,7 @@ nl_parse_link(struct nlmsghdr *h, int sc
+ 	ea_set_attr_data(&f.attrs, &ea_iface_vxlan_ip_addr, 0, &addr, sizeof(addr));
+       }
+     }
++#endif
+   }
+ 
+   ifi = if_find_by_index(i->ifi_index);
+@@ -1696,9 +1727,11 @@ nl_send_route(struct krt_proto *p, const
      int id = ea->id - ea_krt_metrics[0].id;
      metrics[0] |= 1 << id;
  
@@ -117,11 +172,11 @@
      if (id == RTAX_CC_ALGO)
        cc_algo = ea->u.ptr->data;
      else
-+#endif /* RTAX_CC_ALGO since Linux 4.0 */
++#endif
        metrics[id] = ea->u.data;
    }
  
-@@ -2096,9 +2117,11 @@ nl_parse_route(struct nl_parse_state *s,
+@@ -2096,9 +2129,11 @@ nl_parse_route(struct nl_parse_state *s,
  
        for (uint t = 1; t < KRT_METRICS_MAX; t++)
  	if (metrics[0] & (1 << t))
@@ -129,34 +184,7 @@
  	  if (t == RTAX_CC_ALGO)
  	    ea_set_attr(&ra, EA_LITERAL_STORE_ADATA(&ea_krt_metrics[t], 0, cc_algo, strlen(cc_algo) + 1));
  	  else
-+#endif /* RTAX_CC_ALGO since Linux 4.0 */
++#endif
  	    ea_set_attr(&ra, EA_LITERAL_EMBEDDED(&ea_krt_metrics[t], 0, metrics[t]));
      }
  
-@@ -2208,8 +2231,10 @@ nl_send_fdb(const net_addr *n0, const rt
-       nl_add_attr_u32(&r->h, rsize, NDA_VNI, nh->label[0]);
- 
-     eattr *ea = ea_find(e->attrs, &ea_gen_mpls_label);
-+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,11,0)
-     if (ea)
-       nl_add_attr_u32(&r->h, rsize, NDA_SRC_VNI, ea->u.data);
-+#endif /* NDA_SRC_VNI since Linux 4.11 */
- 
-     r->n.ndm_state |= NUD_PERMANENT;
-   }
-@@ -2352,6 +2377,7 @@ nl_parse_fdb(struct nl_parse_state *s, s
-       nh->label[0] = rta_get_u32(a[NDA_VNI]);
-     }
- 
-+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,11,0)
-     if (a[NDA_SRC_VNI])
-     {
-       struct kbr_vlan *vlan = kbr_find_vlan_by_vni(p, oif->index, rta_get_u32(a[NDA_SRC_VNI]));
-@@ -2363,6 +2389,7 @@ nl_parse_fdb(struct nl_parse_state *s, s
- 
-       ((net_addr_eth *) &n)->vid = vid = vlan->vid;
-     }
-+#endif /* NDA_SRC_VNI since Linux 4.11 */
- 
-     tunnel = true;
-   }
