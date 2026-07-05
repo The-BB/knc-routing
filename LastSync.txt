@@ -1,10 +1,8 @@
-commit e3b181fb47a650cc5192b5e2d1b89056967109f3 (HEAD -> master, origin/master, origin/HEAD)
-Author: Toke Høiland-Jørgensen <toke@toke.dk>
-Date:   Mon Jun 29 12:28:06 2026 +0200
+commit 8c2385009d29a6d4e3ecc8cc38e8c5c0d71c691f (HEAD -> master, origin/master, origin/HEAD)
+Merge: e3b181f e76fbe6
+Author: Simon Wunderlich <sw@simonwunderlich.de>
+Date:   Thu Jul 2 14:41:37 2026 +0200
 
-    bird2/bird3: rename test.sh to test-version.sh
+    Merge pull request #1183 from ecsv/batadv-2026.2
     
-    The test script is really a version override test, rename it to fix the
-    failing CI tests.
-    
-    Signed-off-by: Toke Høiland-Jørgensen <toke@toke.dk>
+    batman-adv: update packages to version 2026.2
