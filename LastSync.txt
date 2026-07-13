@@ -1,8 +1,11 @@
-commit 8c2385009d29a6d4e3ecc8cc38e8c5c0d71c691f (HEAD -> master, origin/master, origin/HEAD)
-Merge: e3b181f e76fbe6
-Author: Simon Wunderlich <sw@simonwunderlich.de>
-Date:   Thu Jul 2 14:41:37 2026 +0200
+commit c7872431105f69894201dc522b7560e47d1e8ba9 (HEAD -> master, origin/master, origin/HEAD)
+Author: Josef Schlehofer <pepe.schlehofer@gmail.com>
+Date:   Thu Jul 9 21:18:12 2026 +0200
 
-    Merge pull request #1183 from ecsv/batadv-2026.2
+    ci: use openwrt-bot-worker for formalities
     
-    batman-adv: update packages to version 2026.2
+    - Enable bot comments to provide contributors with immediate feedback
+    - Enable stale bot
+    - Execute the feeds package test build only when the formalities check succeeds
+    
+    Signed-off-by: Josef Schlehofer <pepe.schlehofer@gmail.com>
