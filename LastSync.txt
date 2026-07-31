@@ -1,11 +1,9 @@
-commit c7872431105f69894201dc522b7560e47d1e8ba9 (HEAD -> master, origin/master, origin/HEAD)
-Author: Josef Schlehofer <pepe.schlehofer@gmail.com>
-Date:   Thu Jul 9 21:18:12 2026 +0200
+commit 9273bd2ee4a56eb7d3810bf2bd6378e63c488d50 (HEAD -> master, origin/master, origin/HEAD)
+Author: Toke Høiland-Jørgensen <toke@toke.dk>
+Date:   Fri Jul 31 11:08:08 2026 +0200
 
-    ci: use openwrt-bot-worker for formalities
+    bird3: bump to v3.3.2
     
-    - Enable bot comments to provide contributors with immediate feedback
-    - Enable stale bot
-    - Execute the feeds package test build only when the formalities check succeeds
+    Update to latest upstream bugfix release.
     
-    Signed-off-by: Josef Schlehofer <pepe.schlehofer@gmail.com>
+    Signed-off-by: Toke Høiland-Jørgensen <toke@toke.dk>
