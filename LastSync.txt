@@ -1,8 +1,8 @@
-commit 9273bd2ee4a56eb7d3810bf2bd6378e63c488d50 (HEAD -> master, origin/master, origin/HEAD)
+commit b40e6284f9944b8f3dc2b0edd2319d0c74660fd5 (HEAD -> master, origin/master, origin/HEAD)
 Author: Toke Høiland-Jørgensen <toke@toke.dk>
-Date:   Fri Jul 31 11:08:08 2026 +0200
+Date:   Fri Jul 31 11:09:21 2026 +0200
 
-    bird3: bump to v3.3.2
+    bird2: bump to v2.19.2
     
     Update to latest upstream bugfix release.
     
